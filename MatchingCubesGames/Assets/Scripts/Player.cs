@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameSettings m_gameSettings;
     [SerializeField] private Rigidbody m_rb;
     [SerializeField] private List<GameObject> m_cubes = new List<GameObject>();
+    [SerializeField] private List<GameObject> m_targetCubes;
 
     #endregion
     #region Private Fields
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         MouseInput();
-        
+        CubesColorControl();
     }
 
     /// <summary>
@@ -84,6 +85,28 @@ public class Player : MonoBehaviour
         m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed;
     }
 
+    
+    /// <summary>
+    /// This function control cubes color in cubeList
+    /// </summary>
+    private void CubesColorControl()
+    {
+        if (m_cubes.Count < 3)
+            return;
+
+        int matchCount = 0;
+        
+        for (int i = 0; i < m_cubes.Count; i++)
+        {
+            if (m_cubes[i].gameObject.GetComponent<CubeComponent>().GetColor() == m_cubes[i + 1].gameObject.GetComponent<CubeComponent>().GetColor())
+            {
+                matchCount += 1;
+                m_targetCubes.Add(m_cubes[i + 1]);
+                m_targetCubes.Add(m_cubes[i]);
+            }
+        }
+    }
+    
     /// <summary>
     /// this function help for update player position
     /// </summary>
@@ -93,6 +116,10 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
     }
 
+    /// <summary>
+    /// This function return cubes list
+    /// </summary>
+    /// <returns></returns>
     public List<GameObject> GetCubeList()
     {
         return m_cubes;

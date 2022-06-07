@@ -344,6 +344,7 @@ MonoBehaviour:
   m_rb: {fileID: 291399732}
   m_cubes:
   - {fileID: 1574975232}
+  m_targetCubes: []
 --- !u!54 &291399732
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -577,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b84ba342501948418c452d0929f1617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eColor: 3
+  _eColor: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b84ba342501948418c452d0929f1617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eColor: 1
+  _eColor: 0
 --- !u!1 &1177821178
 GameObject:
   m_ObjectHideFlags: 0

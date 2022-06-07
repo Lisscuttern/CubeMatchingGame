@@ -7,5 +7,10 @@ public class CubeComponent : MonoBehaviour
     [SerializeField] private EColor _eColor;
 
     #endregion
+
+    public EColor GetColor()
+    {
+        return _eColor;
+    }
     
 }
