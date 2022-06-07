@@ -9,9 +9,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameSettings m_gameSettings;
     [SerializeField] private Rigidbody m_rb;
-    [SerializeField] private PickerComponent m_pickerComponent;
-    
-    
+    [SerializeField] private List<GameObject> m_cubes = new List<GameObject>();
+
     #endregion
     #region Private Fields
 
@@ -93,5 +92,10 @@ public class Player : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
     }
-    
+
+    public List<GameObject> GetCubeList()
+    {
+        return m_cubes;
+    }
+
 }

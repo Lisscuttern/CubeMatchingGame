@@ -342,7 +342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameSettings: {fileID: 11400000, guid: f1cc1352cc45d499d93b4666fb7f8122, type: 2}
   m_rb: {fileID: 291399732}
-  m_pickerComponent: {fileID: 1115471095}
+  m_cubes:
+  - {fileID: 1574975232}
 --- !u!54 &291399732
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -921,8 +922,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_player: {fileID: 291399729}
   m_playerScript: {fileID: 291399731}
-  m_cube: []
-  m_cubeHeight: 0
 --- !u!1 &1176308750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1254,7 @@ GameObject:
   - component: {fileID: 1574975237}
   m_Layer: 0
   m_Name: RedCube
-  m_TagString: Untagged
+  m_TagString: Cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

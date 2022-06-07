@@ -1,8 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeComponent : MonoBehaviour
 {
+    #region SerializeFields
+
     [SerializeField] private EColor _eColor;
+
+    #endregion
+    
 }
