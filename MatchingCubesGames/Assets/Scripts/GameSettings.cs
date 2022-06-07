@@ -13,6 +13,7 @@ public class GameSettings : ScriptableObject
     public float SwerveSpeed;
     public float MaxSwerveAmount;
     public float MoveSpeed;
+    public float VerticalMovementBorder;
     
     
     public Color GetColorByEColor(EColor eColor)

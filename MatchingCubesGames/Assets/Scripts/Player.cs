@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameSettings m_gameSettings;
     [SerializeField] private Rigidbody m_rb;
-     
-
+    [SerializeField] private PickerComponent m_pickerComponent;
+    
+    
     #endregion
     #region Private Fields
 
@@ -18,16 +20,17 @@ public class Player : MonoBehaviour
     private float swerveAmount;
 
     #endregion
-    void Start()
+    
+    private void FixedUpdate()
     {
-        
+        VerticalMovement();
+        HorizontalMovement();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         MouseInput();
-        Movement();
+        
     }
 
     /// <summary>
@@ -49,12 +52,46 @@ public class Player : MonoBehaviour
             moveFactor = 0f;
         }
     }
-    private void Movement()
+    
+    /// <summary>
+    /// This function help for player horizontal movement
+    /// </summary>
+    private void HorizontalMovement()
     {
-        m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed;
-            
         swerveAmount = m_gameSettings.SwerveSpeed * moveFactor * Time.deltaTime;
         swerveAmount = Mathf.Clamp(swerveAmount, -m_gameSettings.MaxSwerveAmount, m_gameSettings.MaxSwerveAmount);
         transform.Translate(swerveAmount,0,0);
+        if (transform.position.x < -m_gameSettings.VerticalMovementBorder)
+        {
+            transform.position = new Vector3(
+                -m_gameSettings.VerticalMovementBorder, 
+                transform.position.y, 
+                transform.position.z);
+        }
+        if (transform.position.x > m_gameSettings.VerticalMovementBorder)
+        {
+            transform.position = new Vector3(
+                m_gameSettings.VerticalMovementBorder, 
+                transform.position.y, 
+                transform.position.z);
+        }
     }
+
+    /// <summary>
+    /// This function help for player vertical movement
+    /// </summary>
+    private void VerticalMovement()
+    {
+        m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed;
+    }
+
+    /// <summary>
+    /// this function help for update player position
+    /// </summary>
+    /// <param name="height"></param>
+    public void Playerpos(int height)
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
+    }
+    
 }

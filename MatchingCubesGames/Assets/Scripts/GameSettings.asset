@@ -19,3 +19,4 @@ MonoBehaviour:
   SwerveSpeed: 0.5
   MaxSwerveAmount: 1
   MoveSpeed: 6
+  VerticalMovementBorder: 4.5
