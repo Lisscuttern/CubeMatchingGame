@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class PickerComponent : MonoBehaviour
@@ -7,6 +8,7 @@ public class PickerComponent : MonoBehaviour
 
     [SerializeField] private GameObject m_player;
     [SerializeField] private Player m_playerScript;
+    [SerializeField] private float m_speedUpValue;
     
 
     #endregion
@@ -34,6 +36,16 @@ public class PickerComponent : MonoBehaviour
             //m_playerScript.Playerpos(1);
             m_playerScript.transform.position = new Vector3(m_playerScript.transform.position.x,m_playerScript.transform.position.y +1,m_playerScript.transform.position.z);
             PickerPos();
+        }
+
+        if (other.gameObject.tag == CommonTypes.TAG_SPEEDUP)
+        {
+            m_playerScript.speed = m_speedUpValue;
+        }
+
+        if (other.gameObject.tag == CommonTypes.TAG_JUMP)
+        {
+            m_playerScript.transform.DOJump(new Vector3(m_playerScript.transform.position.x, m_playerScript.transform.position.y, 163f),15,1,5f);
         }
     }
     

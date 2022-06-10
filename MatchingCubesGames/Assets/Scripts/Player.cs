@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     public List<GameObject> BlueCubes;
     public List<GameObject> YellowCubes;
     public List<GameObject> GreenCubes;
-    public int index = 0;
+    public float speed;
 
     #endregion
     
@@ -45,6 +45,15 @@ public class Player : MonoBehaviour
         MouseInput();
         SameColorCubesControl();
         ClearCubeList();
+
+        if (speed > 1)
+        {
+            speed -= Time.deltaTime;
+        }
+        else
+        {
+            speed = 1;
+        }
     }
 
     /// <summary>
@@ -101,8 +110,6 @@ public class Player : MonoBehaviour
                 m_cubes.RemoveAt(i);
                 
             }
-
-       
         }
     }
 
@@ -111,7 +118,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void VerticalMovement()
     {
-        m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed;
+        m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed * speed;
     }
 
     /// <summary>
