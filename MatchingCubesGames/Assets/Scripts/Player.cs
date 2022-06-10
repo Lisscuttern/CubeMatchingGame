@@ -133,9 +133,9 @@ public class Player : MonoBehaviour
         }
         if (GreenCubes.Count >= 3)
         {
-            for (int i = 0; i < RedCubes.Count; i++)
+            for (int i = 0; i < GreenCubes.Count; i++)
             {
-                Destroy(RedCubes[i].gameObject);
+                Destroy(GreenCubes[i].gameObject);
                 m_pickerComponent.m_cubeHeight--;
                 transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
                 m_pickerComponent.transform.localPosition = new Vector3(m_pickerComponent.transform.localPosition.x,
@@ -145,9 +145,9 @@ public class Player : MonoBehaviour
         }
         if (BlueCubes.Count >= 3)
         {
-            for (int i = 0; i < RedCubes.Count; i++)
+            for (int i = 0; i < BlueCubes.Count; i++)
             {
-                Destroy(RedCubes[i].gameObject);
+                Destroy(BlueCubes[i].gameObject);
                 m_pickerComponent.m_cubeHeight--;
                 transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
                 m_pickerComponent.transform.localPosition = new Vector3(m_pickerComponent.transform.localPosition.x,
@@ -157,9 +157,9 @@ public class Player : MonoBehaviour
         }
         if (YellowCubes.Count >= 3)
         {
-            for (int i = 0; i < RedCubes.Count; i++)
+            for (int i = 0; i < YellowCubes.Count; i++)
             {
-                Destroy(RedCubes[i].gameObject);
+                Destroy(YellowCubes[i].gameObject);
                 m_pickerComponent.m_cubeHeight--;
                 transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
                 m_pickerComponent.transform.localPosition = new Vector3(m_pickerComponent.transform.localPosition.x,

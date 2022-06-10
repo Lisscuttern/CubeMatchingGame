@@ -6,6 +6,7 @@ public class CubeComponent : MonoBehaviour
 
     [SerializeField] private EColor _eColor;
     [SerializeField] private Player m_player;
+    [SerializeField] private PickerComponent m_pickerComponent;
 
     #endregion
 
@@ -16,7 +17,7 @@ public class CubeComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Cube")
+        if (other.gameObject.tag == CommonTypes.TAG_CUBE)
         {
             CubeComponent cubeComponent = other.GetComponent<CubeComponent>();
             if (cubeComponent.GetColor() == EColor.RED)
@@ -40,9 +41,9 @@ public class CubeComponent : MonoBehaviour
                     }
                 }
             }
-            if (cubeComponent.GetColor() == EColor.BLUE)
+            if (other.gameObject.GetComponent<CubeComponent>().GetColor() == EColor.BLUE)
             {
-                if (GetColor() == cubeComponent.GetColor())
+                if (GetColor() == other.gameObject.GetComponent<CubeComponent>().GetColor())
                 {
                     if (m_player.BlueCubes.Contains(this.gameObject) && !m_player.BlueCubes.Contains(other.gameObject))
                     {
@@ -103,6 +104,21 @@ public class CubeComponent : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (other.gameObject.tag == CommonTypes.TAG_TRAP)
+        {
+            m_player.transform.position =
+                (new Vector3(m_player.transform.position.x, m_player.transform.position.y - 1, m_player.transform.position.z));
+
+            transform.localPosition = new Vector3(0, transform.localPosition.y, 0);
+            m_pickerComponent.transform.localPosition = new Vector3(
+                m_pickerComponent.transform.localPosition.x,
+                m_pickerComponent.transform.localPosition.y + 1, 
+                m_pickerComponent.transform.localPosition.z);
+            m_pickerComponent.m_cubeHeight--;
+            Destroy(gameObject);
+            other.GetComponent<BoxCollider>().enabled = false;
         }
     }
 }
