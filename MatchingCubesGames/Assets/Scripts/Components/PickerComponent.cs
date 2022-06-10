@@ -11,9 +11,9 @@ public class PickerComponent : MonoBehaviour
 
     #endregion
 
-    #region Private Fields
+    #region Public Fields
 
-    private int m_cubeHeight;
+    public int m_cubeHeight;
 
     #endregion
 
@@ -30,8 +30,9 @@ public class PickerComponent : MonoBehaviour
             other.transform.parent = m_player.transform;
             m_cubeHeight++;
             other.transform.localPosition = new Vector3(0,-m_cubeHeight,0);
-            other.GetComponent<BoxCollider>().enabled = false;
-            m_playerScript.Playerpos(1);
+            //other.GetComponent<BoxCollider>().enabled = false;
+            //m_playerScript.Playerpos(1);
+            m_playerScript.transform.position = new Vector3(m_playerScript.transform.position.x,m_playerScript.transform.position.y +1,m_playerScript.transform.position.z);
             PickerPos();
         }
     }
@@ -41,7 +42,8 @@ public class PickerComponent : MonoBehaviour
     /// </summary>
     private void PickerPos()
     {
-        transform.localPosition = new Vector3(0, -m_cubeHeight, 0);
+        //transform.localPosition = new Vector3(0, -m_cubeHeight, 0);
+        transform.localPosition = new Vector3(0, transform.localPosition.y - 1, 0);
     }
     
 }

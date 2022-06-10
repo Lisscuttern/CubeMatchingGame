@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameSettings m_gameSettings;
     [SerializeField] private Rigidbody m_rb;
     [SerializeField] private List<GameObject> m_cubes = new List<GameObject>();
-    [SerializeField] private List<GameObject> m_targetCubes;
+    [SerializeField] private PickerComponent m_pickerComponent;
 
     #endregion
     #region Private Fields
@@ -18,6 +19,18 @@ public class Player : MonoBehaviour
     private float lastMousePos;
     private float moveFactor;
     private float swerveAmount;
+    
+
+    #endregion
+
+    #region Public Fields
+
+    [Header("Same Color Cubes")]
+    public List<GameObject> RedCubes;
+    public List<GameObject> BlueCubes;
+    public List<GameObject> YellowCubes;
+    public List<GameObject> GreenCubes;
+    public int index = 0;
 
     #endregion
     
@@ -30,7 +43,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         MouseInput();
-        CubesColorControl();
+        SameColorCubesControl();
+        ClearCubeList();
     }
 
     /// <summary>
@@ -77,6 +91,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void ClearCubeList()
+    {
+        for (int i = 0; i < m_cubes.Count; i++)
+        {
+            if (m_cubes[i] == null)
+            { 
+      
+                m_cubes.RemoveAt(i);
+                
+            }
+
+       
+        }
+    }
+
     /// <summary>
     /// This function help for player vertical movement
     /// </summary>
@@ -85,28 +114,61 @@ public class Player : MonoBehaviour
         m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed;
     }
 
-    
     /// <summary>
-    /// This function control cubes color in cubeList
+    /// This function help for destroy matching cubes
     /// </summary>
-    private void CubesColorControl()
+    private void SameColorCubesControl()
     {
-        if (m_cubes.Count < 3)
-            return;
-
-        int matchCount = 0;
-        
-        for (int i = 0; i < m_cubes.Count; i++)
+        if (RedCubes.Count >= 3)
         {
-            if (m_cubes[i].gameObject.GetComponent<CubeComponent>().GetColor() == m_cubes[i + 1].gameObject.GetComponent<CubeComponent>().GetColor())
+            for (int i = 0; i < RedCubes.Count; i++)
             {
-                matchCount += 1;
-                m_targetCubes.Add(m_cubes[i + 1]);
-                m_targetCubes.Add(m_cubes[i]);
+                Destroy(RedCubes[i].gameObject);
+                m_pickerComponent.m_cubeHeight--;
+                transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+                m_pickerComponent.transform.localPosition = new Vector3(m_pickerComponent.transform.localPosition.x,
+                    m_pickerComponent.transform.localPosition.y + 1, m_pickerComponent.transform.localPosition.z);
             }
+            RedCubes.Clear();
+        }
+        if (GreenCubes.Count >= 3)
+        {
+            for (int i = 0; i < RedCubes.Count; i++)
+            {
+                Destroy(RedCubes[i].gameObject);
+                m_pickerComponent.m_cubeHeight--;
+                transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+                m_pickerComponent.transform.localPosition = new Vector3(m_pickerComponent.transform.localPosition.x,
+                    m_pickerComponent.transform.localPosition.y + 1, m_pickerComponent.transform.localPosition.z);
+            }
+            GreenCubes.Clear();
+        }
+        if (BlueCubes.Count >= 3)
+        {
+            for (int i = 0; i < RedCubes.Count; i++)
+            {
+                Destroy(RedCubes[i].gameObject);
+                m_pickerComponent.m_cubeHeight--;
+                transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+                m_pickerComponent.transform.localPosition = new Vector3(m_pickerComponent.transform.localPosition.x,
+                    m_pickerComponent.transform.localPosition.y + 1, m_pickerComponent.transform.localPosition.z);
+            }
+            BlueCubes.Clear();
+        }
+        if (YellowCubes.Count >= 3)
+        {
+            for (int i = 0; i < RedCubes.Count; i++)
+            {
+                Destroy(RedCubes[i].gameObject);
+                m_pickerComponent.m_cubeHeight--;
+                transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+                m_pickerComponent.transform.localPosition = new Vector3(m_pickerComponent.transform.localPosition.x,
+                    m_pickerComponent.transform.localPosition.y + 1, m_pickerComponent.transform.localPosition.z);
+            }
+            YellowCubes.Clear();
         }
     }
-    
+
     /// <summary>
     /// this function help for update player position
     /// </summary>

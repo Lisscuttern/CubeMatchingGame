@@ -169,7 +169,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.544056, y: 1}
+    m_SensorSize: {x: 2.561972, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 71346022}
   - component: {fileID: 71346021}
   - component: {fileID: 71346020}
-  - component: {fileID: 71346019}
+  - component: {fileID: 71346023}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -213,20 +213,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
---- !u!64 &71346019
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71346018}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &71346020
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -292,6 +278,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &71346023
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71346018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 32.393383, z: 10}
+  m_Center: {x: 0, y: -16.196692, z: 0}
 --- !u!1 &291399729
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +343,12 @@ MonoBehaviour:
   m_rb: {fileID: 291399732}
   m_cubes:
   - {fileID: 1574975232}
-  m_targetCubes: []
+  m_pickerComponent: {fileID: 1115471095}
+  RedCubes: []
+  BlueCubes: []
+  YellowCubes: []
+  GreenCubes: []
+  index: 0
 --- !u!54 &291399732
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -579,6 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eColor: 0
+  m_player: {fileID: 291399731}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eColor: 2
+  m_player: {fileID: 291399731}
 --- !u!1 &1100913247
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,6 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_player: {fileID: 291399729}
   m_playerScript: {fileID: 291399731}
+  m_cubeHeight: 0
 --- !u!1 &1176308750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,6 +1041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eColor: 0
+  m_player: {fileID: 291399731}
 --- !u!1 &1177821178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,6 +1153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eColor: 0
+  m_player: {fileID: 291399731}
 --- !u!1 &1554744374
 GameObject:
   m_ObjectHideFlags: 3
@@ -1252,10 +1261,9 @@ GameObject:
   - component: {fileID: 1574975235}
   - component: {fileID: 1574975234}
   - component: {fileID: 1574975233}
-  - component: {fileID: 1574975237}
   m_Layer: 0
   m_Name: RedCube
-  m_TagString: Cube
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1338,16 +1346,3 @@ Transform:
   m_Father: {fileID: 291399730}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1574975237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574975232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b84ba342501948418c452d0929f1617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eColor: 0
