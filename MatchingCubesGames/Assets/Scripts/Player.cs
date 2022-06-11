@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     
     [SerializeField] private PickerComponent m_pickerComponent;
     [SerializeField] private CinemachineVirtualCamera m_virtualCamera;
+    [SerializeField] private TextMeshProUGUI m_text;
 
     #endregion
     #region Private Fields
@@ -70,7 +72,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void MouseInput()
     {
-        if (LevelEndControl())
+        if (LevelEndControl() || m_pickerComponent.LevelEndBool)
             return;
         if(Input.GetMouseButtonDown(0))
         {
@@ -92,7 +94,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void HorizontalMovement()
     {
-        if (LevelEndControl())
+        if (LevelEndControl() || m_pickerComponent.LevelEndBool)
             return;
         swerveAmount = m_gameSettings.SwerveSpeed * moveFactor * Time.deltaTime;
         swerveAmount = Mathf.Clamp(swerveAmount, -m_gameSettings.MaxSwerveAmount, m_gameSettings.MaxSwerveAmount);
@@ -131,7 +133,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void VerticalMovement()
     {
-        if (LevelEndControl())
+        if (LevelEndControl() || m_pickerComponent.LevelEndBool)
         {
             speed = 0;
             m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed * speed;
@@ -229,6 +231,8 @@ public class Player : MonoBehaviour
         if (transform.position.z >= 200)
         {
             ChangeFOV(m_gameSettings.CameraZoomIn, m_gameSettings.Duration);
+            m_text.gameObject.SetActive(true);
+            m_text.text = "Level Complete!";
         }
         
     }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using TMPro;
 
 public class PickerComponent : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PickerComponent : MonoBehaviour
     [SerializeField] private GameObject m_player;
     [SerializeField] private Player m_playerScript;
     [SerializeField] private float m_speedUpValue;
+    [SerializeField] private TextMeshProUGUI m_text;
     
 
     #endregion
@@ -16,6 +18,7 @@ public class PickerComponent : MonoBehaviour
     #region Public Fields
 
     public int m_cubeHeight;
+    public bool LevelEndBool;
 
     #endregion
 
@@ -63,6 +66,16 @@ public class PickerComponent : MonoBehaviour
 
                 // m_playerScript.m_cubes[i].transform.localPosition = m_playerScript.m_cubes[index].transform.localPosition;
                 // m_playerScript.m_cubes[index].transform.localPosition = temp.transform.localPosition;
+            }
+        }
+
+        if (other.gameObject.tag == CommonTypes.TAG_TRAP)
+        {
+            if (m_playerScript.m_cubes.Count == 0)
+            {
+                LevelEndBool = true;
+                m_text.gameObject.SetActive(true);
+                m_text.text = "Game Over!";
             }
         }
     }
