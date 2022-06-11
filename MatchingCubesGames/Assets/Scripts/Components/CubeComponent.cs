@@ -9,6 +9,7 @@ public class CubeComponent : MonoBehaviour
     [SerializeField] private Player m_player;
     [SerializeField] private PickerComponent m_pickerComponent;
     [SerializeField] private GameSettings gameSettings;
+    [SerializeField] private TrailRenderer m_trailRenderer;
     #endregion
 
     private void Start()
@@ -125,6 +126,19 @@ public class CubeComponent : MonoBehaviour
             m_pickerComponent.m_cubeHeight--;
             Destroy(gameObject);
             other.GetComponent<BoxCollider>().enabled = false;
+        }
+
+        if (other.gameObject.tag == CommonTypes.TAG_GROUND)
+        {
+            m_trailRenderer.emitting = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == CommonTypes.TAG_GROUND)
+        {
+            m_trailRenderer.emitting = false;
         }
     }
 }

@@ -206,9 +206,10 @@ GameObject:
   - component: {fileID: 71346021}
   - component: {fileID: 71346020}
   - component: {fileID: 71346023}
-  m_Layer: 0
+  - component: {fileID: 71346024}
+  m_Layer: 6
   m_Name: Road1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -291,6 +292,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 32.393383, z: 10}
   m_Center: {x: 0, y: -16.196692, z: 0}
+--- !u!65 &71346024
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71346018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &96973127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -833,10 +847,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1469319463}
     - target: {fileID: 1084636829759397954, guid: 08715a4a2e541449983b821f6fb36e1a, type: 3}
-      propertyPath: gameSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: f1cc1352cc45d499d93b4666fb7f8122, type: 2}
-    - target: {fileID: 1084636829759397954, guid: 08715a4a2e541449983b821f6fb36e1a, type: 3}
       propertyPath: m_pickerComponent
       value: 
       objectReference: {fileID: 1115471095}
@@ -907,9 +917,10 @@ GameObject:
   - component: {fileID: 931074372}
   - component: {fileID: 931074371}
   - component: {fileID: 931074370}
+  - component: {fileID: 931074374}
   m_Layer: 0
   m_Name: Road2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -992,6 +1003,19 @@ Transform:
   m_Father: {fileID: 413704116}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &931074374
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931074369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: -0.0000038146973}
 --- !u!1 &956344232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2374,10 +2398,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1469319463}
     - target: {fileID: 1084636829759397954, guid: 08715a4a2e541449983b821f6fb36e1a, type: 3}
-      propertyPath: gameSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: f1cc1352cc45d499d93b4666fb7f8122, type: 2}
-    - target: {fileID: 1084636829759397954, guid: 08715a4a2e541449983b821f6fb36e1a, type: 3}
       propertyPath: m_pickerComponent
       value: 
       objectReference: {fileID: 1115471095}
@@ -2548,10 +2568,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1469319463}
     - target: {fileID: 2726389190232451545, guid: eff91bacf31224051b3a30a4ef2a3705, type: 3}
-      propertyPath: gameSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: f1cc1352cc45d499d93b4666fb7f8122, type: 2}
-    - target: {fileID: 2726389190232451545, guid: eff91bacf31224051b3a30a4ef2a3705, type: 3}
       propertyPath: m_pickerComponent
       value: 
       objectReference: {fileID: 1115471095}
@@ -2612,10 +2628,6 @@ PrefabInstance:
       propertyPath: m_player
       value: 
       objectReference: {fileID: 1469319463}
-    - target: {fileID: 3090623443423338915, guid: 2775219bfe2814a4a95af3bf5b35b54d, type: 3}
-      propertyPath: gameSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: f1cc1352cc45d499d93b4666fb7f8122, type: 2}
     - target: {fileID: 3090623443423338915, guid: 2775219bfe2814a4a95af3bf5b35b54d, type: 3}
       propertyPath: m_pickerComponent
       value: 
@@ -2751,10 +2763,6 @@ PrefabInstance:
       propertyPath: m_player
       value: 
       objectReference: {fileID: 1469319463}
-    - target: {fileID: 8795325080548943553, guid: 80c39d4bc0be14963ac22d2fd620fec7, type: 3}
-      propertyPath: gameSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: f1cc1352cc45d499d93b4666fb7f8122, type: 2}
     - target: {fileID: 8795325080548943553, guid: 80c39d4bc0be14963ac22d2fd620fec7, type: 3}
       propertyPath: m_pickerComponent
       value: 
