@@ -8,6 +8,7 @@ TagManager:
   - Trap
   - SpeedUp
   - Jump
+  - RandomGate
   layers:
   - Default
   - TransparentFX

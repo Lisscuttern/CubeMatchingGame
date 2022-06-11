@@ -47,6 +47,24 @@ public class PickerComponent : MonoBehaviour
         {
             m_playerScript.transform.DOJump(new Vector3(m_playerScript.transform.position.x, m_playerScript.transform.position.y, 163f),15,1,5f);
         }
+
+        if (other.gameObject.tag == CommonTypes.TAG_RANDOM_GATE)
+        {
+            for (int i = 0; i < m_playerScript.m_cubes.Count; i++)
+            {
+                GameObject temp = m_playerScript.m_cubes[i];
+               
+
+                int index = Random.Range(0 , m_playerScript.m_cubes.Count);
+                
+                // m_playerScript.m_cubes[i] = m_playerScript.m_cubes[index];
+                // m_playerScript.m_cubes[index] = temp;
+
+
+                // m_playerScript.m_cubes[i].transform.localPosition = m_playerScript.m_cubes[index].transform.localPosition;
+                // m_playerScript.m_cubes[index].transform.localPosition = temp.transform.localPosition;
+            }
+        }
     }
     
     /// <summary>

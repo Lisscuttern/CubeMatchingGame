@@ -6,4 +6,5 @@ public class CommonTypes : MonoBehaviour
     public static string TAG_TRAP = "Trap";
     public static string TAG_SPEEDUP = "SpeedUp";
     public static string TAG_JUMP = "Jump";
+    public static string TAG_RANDOM_GATE = "RandomGate";
 }

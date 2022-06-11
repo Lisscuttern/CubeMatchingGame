@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameSettings m_gameSettings;
     [SerializeField] private Rigidbody m_rb;
-    [SerializeField] private List<GameObject> m_cubes = new List<GameObject>();
+    
     [SerializeField] private PickerComponent m_pickerComponent;
 
     #endregion
@@ -20,11 +20,15 @@ public class Player : MonoBehaviour
     private float moveFactor;
     private float swerveAmount;
     
+    
+    
 
     #endregion
 
     #region Public Fields
 
+    public List<GameObject> m_cubes = new List<GameObject>();
+    
     [Header("Same Color Cubes")]
     public List<GameObject> RedCubes;
     public List<GameObject> BlueCubes;
@@ -36,12 +40,14 @@ public class Player : MonoBehaviour
     
     private void FixedUpdate()
     {
+        
         VerticalMovement();
         HorizontalMovement();
     }
     
     void Update()
     {
+       
         MouseInput();
         SameColorCubesControl();
         ClearCubeList();
@@ -61,6 +67,8 @@ public class Player : MonoBehaviour
     /// </summary>
     private void MouseInput()
     {
+        if (LevelEndControl())
+            return;
         if(Input.GetMouseButtonDown(0))
         {
             lastMousePos = Input.mousePosition.x;
@@ -81,6 +89,8 @@ public class Player : MonoBehaviour
     /// </summary>
     private void HorizontalMovement()
     {
+        if (LevelEndControl())
+            return;
         swerveAmount = m_gameSettings.SwerveSpeed * moveFactor * Time.deltaTime;
         swerveAmount = Mathf.Clamp(swerveAmount, -m_gameSettings.MaxSwerveAmount, m_gameSettings.MaxSwerveAmount);
         transform.Translate(swerveAmount,0,0);
@@ -118,7 +128,17 @@ public class Player : MonoBehaviour
     /// </summary>
     private void VerticalMovement()
     {
-        m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed * speed;
+        if (LevelEndControl())
+        {
+            speed = 0;
+            m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed * speed;
+        }
+        else
+        {
+            m_rb.velocity = Vector3.forward * m_gameSettings.MoveSpeed * speed;
+        }
+            
+        
     }
 
     /// <summary>
@@ -174,6 +194,19 @@ public class Player : MonoBehaviour
             }
             YellowCubes.Clear();
         }
+    }
+
+    
+    /// <summary>
+    /// This function control level end or not
+    /// </summary>
+    /// <returns></returns>
+    public bool LevelEndControl()
+    {
+        if (transform.position.z >= 200)
+            return true;
+
+        return false;
     }
 
     /// <summary>
