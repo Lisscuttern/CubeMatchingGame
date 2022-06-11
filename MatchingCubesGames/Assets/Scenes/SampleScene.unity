@@ -1593,6 +1593,7 @@ MonoBehaviour:
   m_gameSettings: {fileID: 11400000, guid: f1cc1352cc45d499d93b4666fb7f8122, type: 2}
   m_rb: {fileID: 1469319462}
   m_pickerComponent: {fileID: 1115471095}
+  m_virtualCamera: {fileID: 44077583}
   m_cubes: []
   RedCubes: []
   BlueCubes: []

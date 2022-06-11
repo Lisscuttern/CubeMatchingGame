@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using DG.Tweening;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody m_rb;
     
     [SerializeField] private PickerComponent m_pickerComponent;
+    [SerializeField] private CinemachineVirtualCamera m_virtualCamera;
 
     #endregion
     #region Private Fields
@@ -47,7 +50,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-       
+        LevelEnd();
         MouseInput();
         SameColorCubesControl();
         ClearCubeList();
@@ -140,6 +143,31 @@ public class Player : MonoBehaviour
             
         
     }
+    
+    public void ChangeFOV(float amount, float duration)
+    {
+        if (DOTween.IsTweening(CommonTypes.VIRTUAL_CAMERA))
+            DOTween.Kill(CommonTypes.VIRTUAL_CAMERA);
+
+        float currentFOV = GetVirtualCamera().m_Lens.FieldOfView;
+
+        Sequence sequence = DOTween.Sequence();
+
+        sequence.Join(DOTween.To(() => currentFOV, x => currentFOV = x, amount, duration));
+
+        sequence.OnUpdate(()=>{
+
+            GetVirtualCamera().m_Lens.FieldOfView = currentFOV;
+        });
+
+        sequence.OnComplete(() => {
+
+            GetVirtualCamera().m_Lens.FieldOfView = amount;
+        });
+
+        sequence.SetId(CommonTypes.VIRTUAL_CAMERA);
+        sequence.Play();
+    }
 
     /// <summary>
     /// This function help for destroy matching cubes
@@ -196,6 +224,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void LevelEnd()
+    {
+        if (transform.position.z >= 200)
+        {
+            ChangeFOV(m_gameSettings.CameraZoomIn, m_gameSettings.Duration);
+        }
+        
+    }
     
     /// <summary>
     /// This function control level end or not
@@ -225,6 +261,14 @@ public class Player : MonoBehaviour
     public List<GameObject> GetCubeList()
     {
         return m_cubes;
+    }
+    
+    /// This function returns related virtual camera component.
+    /// </summary>
+    /// <returns></returns>
+    public CinemachineVirtualCamera GetVirtualCamera()
+    {
+        return m_virtualCamera;
     }
 
 }

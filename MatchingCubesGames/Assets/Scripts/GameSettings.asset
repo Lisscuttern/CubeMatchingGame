@@ -20,3 +20,5 @@ MonoBehaviour:
   MaxSwerveAmount: 1
   MoveSpeed: 6
   VerticalMovementBorder: 4.5
+  CameraZoomIn: 30
+  Duration: 2

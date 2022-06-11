@@ -14,7 +14,11 @@ public class GameSettings : ScriptableObject
     public float MaxSwerveAmount;
     public float MoveSpeed;
     public float VerticalMovementBorder;
-    
+
+    [Header("Camera")] 
+    public float CameraZoomIn;
+
+    public float Duration;
     
     public Color GetColorByEColor(EColor eColor)
     {
