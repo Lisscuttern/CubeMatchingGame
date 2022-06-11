@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CubeComponent : MonoBehaviour
@@ -7,8 +8,13 @@ public class CubeComponent : MonoBehaviour
     [SerializeField] private EColor _eColor;
     [SerializeField] private Player m_player;
     [SerializeField] private PickerComponent m_pickerComponent;
-
+    [SerializeField] private GameSettings gameSettings;
     #endregion
+
+    private void Start()
+    {
+        gameSettings.GetColorByEColor(_eColor);
+    }
 
     public EColor GetColor()
     {

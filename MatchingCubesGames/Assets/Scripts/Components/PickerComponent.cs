@@ -35,8 +35,6 @@ public class PickerComponent : MonoBehaviour
             other.transform.parent = m_player.transform;
             m_cubeHeight++;
             other.transform.localPosition = new Vector3(0,-m_cubeHeight,0);
-            //other.GetComponent<BoxCollider>().enabled = false;
-            //m_playerScript.Playerpos(1);
             m_playerScript.transform.position = new Vector3(m_playerScript.transform.position.x,m_playerScript.transform.position.y +1,m_playerScript.transform.position.z);
             PickerPos();
         }

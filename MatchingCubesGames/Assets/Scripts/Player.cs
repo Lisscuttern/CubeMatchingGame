@@ -115,6 +115,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This function help for clear cubes list
+    /// </summary>
     private void ClearCubeList()
     {
         for (int i = 0; i < m_cubes.Count; i++)
@@ -146,6 +149,11 @@ public class Player : MonoBehaviour
         
     }
     
+    /// <summary>
+    /// This function help for camera zoom in 
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <param name="duration"></param>
     public void ChangeFOV(float amount, float duration)
     {
         if (DOTween.IsTweening(CommonTypes.VIRTUAL_CAMERA))
@@ -247,15 +255,6 @@ public class Player : MonoBehaviour
             return true;
 
         return false;
-    }
-
-    /// <summary>
-    /// this function help for update player position
-    /// </summary>
-    /// <param name="height"></param>
-    public void Playerpos(int height)
-    {
-        transform.position = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
     }
 
     /// <summary>
